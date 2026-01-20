@@ -6,6 +6,13 @@ const fs = require("fs");
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+    const now = new Date();
+    const timestamp = now.toISOString().replace("T", " ").substring(0, 19);
+    console.log(`[${timestamp}] ${req.method} ${req.url}`);
+    next();
+});
+
 const AGENTS_FILE = "./agents.json";
 
 const PORT = 3000;
@@ -72,19 +79,6 @@ app.put("/agents/:id", (req, res) => {
         res.status(404).json({ message: "Agent not found" });
     }
 });
-
-app.delete("/agents/:id", (req, res) => {
-    const agents = readAgents();
-    const agent = agents.find((a) => a.id === req.params.id);
-    if (agent) {
-        const index = agents.indexOf(agent);
-        agents.splice(index, 1);
-        writeAgents(agents);
-        res.json(agent);
-    } else {
-        res.status(404).json({ message: "Agent not found" });
-    }
-})
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
