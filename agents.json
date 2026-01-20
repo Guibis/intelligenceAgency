@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "name": "James Bond",
+    "status": "Active",
+    "skills": [
+      "Espionage",
+      "Driving"
+    ]
+  }
+]
