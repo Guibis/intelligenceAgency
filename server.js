@@ -73,6 +73,19 @@ app.put("/agents/:id", (req, res) => {
     }
 });
 
+app.delete("/agents/:id", (req, res) => {
+    const agents = readAgents();
+    const agent = agents.find((a) => a.id === req.params.id);
+    if (agent) {
+        const index = agents.indexOf(agent);
+        agents.splice(index, 1);
+        writeAgents(agents);
+        res.json(agent);
+    } else {
+        res.status(404).json({ message: "Agent not found" });
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
