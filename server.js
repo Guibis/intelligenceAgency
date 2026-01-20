@@ -26,9 +26,7 @@ const readAgents = () => {
     }
 };
 
-const writeAgents = (agents) => {
-    fs.writeFileSync(AGENTS_FILE, JSON.stringify(agents, null, 2));
-};
+const writeAgents = (agents) => fs.writeFileSync(AGENTS_FILE, JSON.stringify(agents, null, 2));
 
 app.get("/agents", (req, res) => {
     const agents = readAgents();
@@ -80,6 +78,4 @@ app.put("/agents/:id", (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
