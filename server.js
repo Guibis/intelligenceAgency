@@ -1,5 +1,4 @@
 const express = require("express");
-
 const app = express();
 const logger = require('./middleware/logger');
 const routes = require('./routes/routes');
