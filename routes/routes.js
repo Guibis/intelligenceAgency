@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const getAgents = require("../controllers/get");
-const getAgentById = require("../controllers/get");
+const { getAgents, getAgentById } = require("../controllers/get");
 const createAgent = require("../controllers/post");
 const updateAgent = require("../controllers/put");
 const deleteAgent = require("../controllers/delete");
